@@ -20,11 +20,9 @@ public class Main {
         Champion theChamp = buildChampion( );
         System.out.println( theChamp );
 
-        /* UNCOMMENT ME LATER
         gameIntro( theChamp );
         int outcome = battleLoop( theChamp );
         endGame( theChamp, outcome);
-        */
 
     }
 
@@ -68,7 +66,6 @@ public class Main {
      * Upon surrenduring the loop is exited.
      * @param theChamp  the champion object that the user created.
      */
-/* ----UNCOMMENT ME LATER ----
     public static int battleLoop( Champion theChamp) {
         String decision = FIGHT_DECISION;
 
@@ -96,14 +93,12 @@ public class Main {
         return VICTORY_OUTCOME;
 
     }
-*/
 
     /**
      * This function loops while the champ and monster attack eachother until one of the two die.
      * @param theChamp champion that the user created
      * @param enemy the randomly generated monster.
      */
-/* ----UNCOMMENT ME LATER ----
     public static int attackLoop( Champion theChamp, Monster enemy){
         while (theChamp.isAlive() && enemy.isAlive()) {
 
@@ -123,7 +118,6 @@ public class Main {
 
         return VICTORY_OUTCOME;
     }
-*/
 
     /**
      * Prints the end game message

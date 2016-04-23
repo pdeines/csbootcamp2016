@@ -55,7 +55,7 @@ public class ChampionType {
             case PEASANT:
                 return PEASANT_MODIFIER;
             default:
-                return PEASANT_MODIFIER
+                return PEASANT_MODIFIER;
         }
     }
 

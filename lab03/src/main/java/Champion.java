@@ -1,6 +1,7 @@
 /**
  * Created by smaloney on 4/3/15.
  */
+
 public class Champion {
 
     private String name;
@@ -26,6 +27,7 @@ public class Champion {
      */
     public int getAttackDamage() {
         //@TODO: Implement me
+        return (int)(weapon.getDamage() * ChampionType.getTypeModifier(type));
     }
 
     /**
@@ -36,6 +38,7 @@ public class Champion {
      */
     public int getDefense() {
         //@TODO: Implement me
+	return armor.getDefense();
     }
 
     /**
@@ -43,11 +46,12 @@ public class Champion {
      * - Print out the name of the champion, and how much damage they do.
      * @param target
      */
-    /* --------- Uncomment once Monster is implemented ---------
-    public void attack( Monster target ){
+    public void attack( Monster target )
+    {
         //@TODO: Implement me
+	target.setHealth(target.getHealth() - this.getAttackDamage());
+	System.out.println("Champion " + this.getName() + " hits for " + this.getAttackDamage() + " damage");
     }
-    */
 
     /**
      * Drop the currently equiped weapon
@@ -96,6 +100,14 @@ public class Champion {
      */
     public void setType( String newType ) {
         // @TODO: Implement me
+        if(ChampionType.isValidType(newType))
+	{
+		this.type = newType;
+	}
+	else
+	{
+		this.type = new String("Peasent");
+	}
     }
 
     public String getName() {
@@ -111,6 +123,14 @@ public class Champion {
      */
     public boolean isAlive(){
         //@TODO: Implement me
+	if(health > 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
     }
 
     public int getHealth() {
@@ -135,6 +155,7 @@ public class Champion {
      */
     public String toString() {
         //@TODO: implement me
+        return new String(getName() + " " + getHealth());
     }
 
 }
