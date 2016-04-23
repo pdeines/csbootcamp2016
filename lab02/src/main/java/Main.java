@@ -26,12 +26,12 @@ public class Main {
 	System.out.println(toLowerCase('2'));
 	System.out.println(isPalindromeSimple("mom".toCharArray()));
 	System.out.println(isPalindromeSimple("bubble".toCharArray()));
+	System.out.println(isPalindromeComplex("mom".toCharArray()));
+	System.out.println(isPalindromeComplex("Race car".toCharArray()));
+	System.out.println(isPalindromeComplex("#-mom-#".toCharArray()));
+	System.out.println(isPalindromeComplex("food".toCharArray()));
+	System.out.println(isPalindromeComplex("Was it a car or a cat I saw?".toCharArray()));
 */
-//	System.out.println(isPalindromeComplex("mom".toCharArray()));
-//	System.out.println(isPalindromeComplex("Race car".toCharArray()));
-//	System.out.println(isPalindromeComplex("#-mom-#".toCharArray()));
-//	System.out.println(isPalindromeComplex("food".toCharArray()));
-//	System.out.println(isPalindromeComplex("Was it a car or a cat I saw?".toCharArray()));
     }
 
     /**
@@ -209,45 +209,32 @@ public class Main {
      * @return true if the provided word is a palindrome.
      */
     public static boolean isPalindromeComplex(char[] characters) {
-	if(characters.length < 1){
-		return false;
-	}
-	int i = 0;
-	int j = characters.length - 1;
-	boolean check = true;
+	char[] sanitizedCharacters = new char[characters.length];
+	int spot = 0;
 
-	while(i < characters.length)
+	// strip out non letters, convert all to lowercase
+	for(int i=0; i < characters.length; i++)
 	{
-		System.out.println("Top of outerloop");
-		System.out.println("i: " + i);
-		System.out.println("j: " + j);
-		for(int iloop = i; iloop < characters.length; iloop++){
-			if(isLetter(characters[i]) == false){
-				i++;
-			}
-			else{
-				break;
-			}
+		if(isLetter(characters[i]))
+		{
+//			System.out.println("letter: " + toLowerCase(characters[i]));
+			sanitizedCharacters[spot] = toLowerCase(characters[i]);
+			spot++;
 		}
-		for(int jloop = j; jloop > 0; jloop--){
-			if(isLetter(characters[j]) == false){
-				j--;
-			}
-			else{
-				break;
-			}
-		}
-		if(toLowerCase(characters[i]) != toLowerCase(characters[j])){
-			check = false;
-			break;
-		}
-		i++;
-		j--;
-		System.out.println("Bottom of outerloop");
-		System.out.println("i: " + i);
-		System.out.println("j: " + j);
 	}
-        return check;
-    }
 
+//	System.out.println("first scrub: " + new String(sanitizedCharacters));
+	
+	// resize the array containing the string to check
+	char[] potentialPalindrome = new char[spot];
+	for(int i=0; i < spot; i++)
+	{
+		potentialPalindrome[i] = sanitizedCharacters[i];
+	}
+//	System.out.println("string: " + new String(potentialPalindrome));
+//	System.out.println("length: " + potentialPalindrome.length);
+
+	// check the cleansed array, return value
+	return isPalindromeSimple(potentialPalindrome);
+    }
 }
